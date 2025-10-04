@@ -1,14 +1,106 @@
-services:
+﻿services:
   postgres:
     image: postgres:15-alpine
     environment:
       POSTGRES_USER: news
       POSTGRES_PASSWORD: news
       POSTGRES_DB: newsdb
-    ports: ["55432:5432"]
-    volumes: [pgdata:/var/lib/postgresql/data]
+    ports:
+      - "55432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U news -d newsdb"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
   redis:
     image: redis:7-alpine
-    ports: ["6379:6379"]
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    image: fin-news-hot-api
+    build:
+      context: .
+      dockerfile: api/Dockerfile
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgresql+asyncpg://news:news@postgres:5432/newsdb
+      REDIS_URL: redis://redis:6379/0
+      ALLOWED_ORIGINS: http://localhost:4173
+      FINNEWS_DISABLE_BERT_NER: "0"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./configs:/app/configs:ro
+      - ./offline:/app/offline
+
+  frontend:
+    image: fin-news-hot-frontend
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+      args:
+        VITE_API_URL: http://backend:8000
+    environment:
+      VITE_API_URL: http://backend:8000
+    depends_on:
+      - backend
+    ports:
+      - "4173:4173"
+
+  ingest:
+    image: fin-news-hot-api
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgresql+asyncpg://news:news@postgres:5432/newsdb
+      REDIS_URL: redis://redis:6379/0
+      FINNEWS_DISABLE_BERT_NER: "0"
+      INGEST_INTERVAL: "300"
+      INGEST_CONCURRENCY: "8"
+      INGEST_MAX_PER_FEED: "20"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    command: >
+      sh -c "while true; do python -m api.app.workers.ingest --sources configs/sources.d --concurrency ${INGEST_CONCURRENCY:-8} --max-per-feed ${INGEST_MAX_PER_FEED:-20}; sleep ${INGEST_INTERVAL:-300}; done"
+    volumes:
+      - ./configs:/app/configs:ro
+
+  social:
+    image: fin-news-hot-api
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgresql+asyncpg://news:news@postgres:5432/newsdb
+      REDIS_URL: redis://redis:6379/0
+      SOCIAL_TWITTER_QUERIES: finance,markets
+      SOCIAL_LINKEDIN_QUERIES: finance,markets
+      SOCIAL_LIMIT: "5"
+      SOCIAL_LINKEDIN_REGION: us-en
+      SOCIAL_INTERVAL: "600"
+      FINNEWS_DISABLE_BERT_NER: "0"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    command: >
+      sh -c "while true; do python -m api.app.workers.social_ingest; sleep ${SOCIAL_INTERVAL:-600}; done"
+    volumes:
+      - ./configs:/app/configs:ro
+
 volumes:
   pgdata:

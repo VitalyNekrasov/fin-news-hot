@@ -13,6 +13,8 @@ class EntityOut(BaseModel):
     ticker: Optional[str] = None
     country: Optional[str] = None
     sector: Optional[str] = None
+    source: Optional[str] = None
+    score: Optional[float] = None
 
 class TimelineItem(BaseModel):
     t: datetime

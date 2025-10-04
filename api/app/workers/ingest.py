@@ -30,6 +30,7 @@ except Exception:
 from ..db import SessionLocal, engine, Base
 from ..models import Event, Source
 from ..services.hotness import hotness
+from ..services.keyphrases import extract_keyphrases, score_phrase_hotness
 
 def _harvest_html_index(html: str, base: str, limit: int = 20) -> list[dict]:
     """
@@ -202,7 +203,7 @@ def teaser_for(entry: dict, link: str) -> str:
 
 # ---------- SIMPLE FEATURES / SCORING ----------
 
-TYPE_SCORE = {"regulator": 1.0, "exchange": 0.95, "ir": 0.9, "news": 0.8, "aggregator": 0.6}
+TYPE_SCORE = {"regulator": 1.0, "exchange": 0.95, "ir": 0.9, "news": 0.8, "aggregator": 0.6, "social_twitter": 0.55, "social_linkedin": 0.6}
 
 MATERIALITY_KEYS = {
     "m&a": 0.9, "merger": 0.9, "acquisition": 0.9, "purchase": 0.7,
@@ -213,6 +214,87 @@ MATERIALITY_KEYS = {
     "bankruptcy": 1.0, "insolvency": 0.9, "restatement": 0.9, "delisting": 0.9,
     "enforcement": 0.7, "order": 0.6, "settlement": 0.8, "approval": 0.6,
 }
+
+
+KEYPHRASE_IMPORTANCE_THRESHOLD = 0.55
+TIMELINE_KEYWORD_MATCH_THRESHOLD = 0.2
+TIMELINE_WINDOW_DAYS = 7
+
+def _collect_important_keywords(items, threshold=KEYPHRASE_IMPORTANCE_THRESHOLD):
+    keywords = set()
+    for item in items or []:
+        name = (item.get("name") or "").strip().lower()
+        if not name:
+            continue
+        try:
+            score = float(item.get("score") or 0.0)
+        except Exception:
+            score = 0.0
+        if score >= threshold:
+            keywords.add(name)
+    return keywords
+
+
+def _fallback_keywords(text, limit=6, min_len=4):
+    tokens = re.findall(r"[\wЀ-ӿ]+", (text or "").lower())
+    picked = []
+    for token in tokens:
+        if len(token) < min_len:
+            continue
+        if token in picked:
+            continue
+        picked.append(token)
+        if len(picked) >= limit:
+            break
+    return set(picked)
+
+
+def _parse_timeline_ts(raw):
+    if not raw:
+        return None
+    try:
+        return dt.datetime.fromisoformat(raw)
+    except ValueError:
+        try:
+            return dt.datetime.fromisoformat(raw.replace("Z", "+00:00"))
+        except Exception:
+            return None
+
+
+def _append_timeline_if_applicable(ev, existing_keywords, new_keywords, now, teaser, title, stype):
+    if not existing_keywords or not new_keywords:
+        return False
+    overlap = len(existing_keywords & new_keywords)
+    if not overlap:
+        return False
+    ratio = overlap / max(len(new_keywords), 1)
+    if ratio < TIMELINE_KEYWORD_MATCH_THRESHOLD:
+        return False
+
+    last_ts = None
+    for item in reversed(ev.timeline or []):
+        if isinstance(item, dict):
+            last_ts = _parse_timeline_ts(item.get("t"))
+        if last_ts:
+            break
+    if last_ts is None:
+        last_ts = getattr(ev, "first_seen", None)
+    if last_ts and (now - last_ts) > dt.timedelta(days=TIMELINE_WINDOW_DAYS):
+        return False
+
+    snippet = (teaser or title or "").strip()
+    if len(snippet) > 180:
+        snippet = snippet[:177].rstrip() + "..."
+    label = stype.replace("_", " ") if stype else "update"
+    description = f"{label}: {snippet}" if snippet else label
+
+    timeline = list(ev.timeline or [])
+    if any(entry.get("what") == description for entry in timeline if isinstance(entry, dict)):
+        return False
+    timeline.append({"t": now.isoformat(), "what": description})
+    ev.timeline = timeline
+    return True
+
 def score_materiality(text: str) -> float:
     t = (text or "").lower()
     if not t:
@@ -248,6 +330,12 @@ async def upsert_event(session, title: str, link: str, stype: str, entry=None):
     ev = res.scalars().first()
     now = utcnow()
     created_event = False
+    existing_keywords_before = set()
+    if ev:
+        existing_keywords_before = _collect_important_keywords(getattr(ev, "entities", None))
+        if not existing_keywords_before:
+            existing_keywords_before = _fallback_keywords(" ".join(filter(None, [ev.headline, getattr(ev, "why_now", "") or ""])))
+
     new_source = False
 
     # Новизна = 1 - максимальная схожесть с последними 200 заголовками
@@ -259,6 +347,13 @@ async def upsert_event(session, title: str, link: str, stype: str, entry=None):
 
     # Аннотация
     teaser = teaser_for(entry or {}, link)
+
+    context_text = " ".join(filter(None, [title, teaser]))
+    phrases = extract_keyphrases(context_text)
+    phrase_hotness = score_phrase_hotness(phrases)
+    new_keywords = _collect_important_keywords(phrases)
+    if not new_keywords:
+        new_keywords = _fallback_keywords(context_text)
 
     # ==== AI-фильтр (LLM + эвристика) ====
     ev_event_type = None
@@ -282,7 +377,7 @@ async def upsert_event(session, title: str, link: str, stype: str, entry=None):
             headline=title,
             hotness=0.0,
             why_now=teaser or "Обновление от первоисточника/регулятора.",
-            entities=[],
+            entities=phrases or [],
             ai_entities=ev_ai_entities,
             risk_flags=ev_risk_flags,
             event_type=ev_event_type,
@@ -300,6 +395,28 @@ async def upsert_event(session, title: str, link: str, stype: str, entry=None):
         # если аннотации ещё нет — дополним
         if not ev.why_now and teaser:
             ev.why_now = teaser
+
+        if phrases:
+            merged = {}
+            for item in (ev.entities or []):
+                name = (item.get("name") or "").strip()
+                if not name:
+                    continue
+                merged[name.lower()] = item
+            for item in phrases:
+                name = (item.get("name") or "").strip()
+                if not name:
+                    continue
+                key = name.lower()
+                existing = merged.get(key)
+                if existing:
+                    existing_score = float(existing.get("score") or 0.0)
+                    incoming_score = float(item.get("score") or 0.0)
+                    if incoming_score > existing_score:
+                        existing.update(item)
+                else:
+                    merged[key] = item
+            ev.entities = list(merged.values())
 
         # дополним AI-поля (мягко)
         if ev_event_type and not ev.event_type:
@@ -320,6 +437,8 @@ async def upsert_event(session, title: str, link: str, stype: str, entry=None):
     if exists_q.scalar_one() == 0:
         session.add(Source(event_id=ev.id, url=link, type=stype, first_seen=now))
         new_source = True
+        if not created_event:
+            _append_timeline_if_applicable(ev, existing_keywords_before, new_keywords, now, teaser, title, stype)
 
     # собрать все источники события для пересчёта
     srcs = (await session.execute(select(Source).where(Source.event_id == ev.id))).scalars().all()
@@ -329,7 +448,8 @@ async def upsert_event(session, title: str, link: str, stype: str, entry=None):
     credibility = max([TYPE_SCORE.get(s.type, 0.7) for s in srcs] or [0.7])
     velocity = min(1.0, len(dset) / 5.0)  # 5 доменов = максимум
     materiality_kw = score_materiality(f"{title} {teaser}")
-    materiality_combined = max(materiality_kw, float(getattr(ev, "materiality_ai", 0.0) or 0.0))
+    materiality_phrase = phrase_hotness
+    materiality_combined = max(materiality_kw, float(getattr(ev, "materiality_ai", 0.0) or 0.0), materiality_phrase)
     scope = min(1.0, len(dset) / 3.0)
 
     ev.confirmed = confirmation >= 0.5

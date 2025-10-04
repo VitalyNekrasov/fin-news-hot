@@ -1,4 +1,4 @@
-fastapi==0.112.*
+﻿fastapi==0.112.*
 uvicorn[standard]==0.30.*
 SQLAlchemy[asyncio]==2.0.*
 asyncpg==0.29.*
@@ -12,3 +12,7 @@ pydantic==2.*
 pydantic-settings==2.*
 PyYAML==6.*
 trafilatura
+transformers==4.41.*
+
+snscrape
+duckduckgo-search==6.*

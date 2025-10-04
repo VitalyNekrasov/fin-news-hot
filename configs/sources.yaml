@@ -99,17 +99,104 @@
 - {name: "Toronto Stock Exchange (TSX)", url: "https://www.tsx.com", type: "exchange", country: "CA"}
 - {name: "Bolsa Mexicana de Valores (BMV)", url: "https://www.bmv.com.mx", type: "exchange", country: "MX"}
 
-# Медиа/агентства/агрегаторы (финансы)
-- {name: "Reuters – Business & Finance", url: "https://www.reuters.com/business", type: "news", country: "INTL"}
+# Financial media / wires / analytics (top 100)
+- {name: "Reuters - Business & Finance", url: "https://www.reuters.com/business", type: "newswire", country: "INTL"}
 - {name: "Bloomberg Markets", url: "https://www.bloomberg.com/markets", type: "news", country: "INTL"}
-- {name: "Financial Times – Markets", url: "https://www.ft.com/markets", type: "news", country: "UK"}
-- {name: "Wall Street Journal – Finance", url: "https://www.wsj.com/finance", type: "news", country: "US"}
-- {name: "CNBC – Finance", url: "https://www.cnbc.com/finance", type: "news", country: "US"}
+- {name: "Financial Times - Markets", url: "https://www.ft.com/markets", type: "news", country: "UK"}
+- {name: "Wall Street Journal - Finance", url: "https://www.wsj.com/finance", type: "news", country: "US"}
+- {name: "CNBC - Finance", url: "https://www.cnbc.com/finance", type: "news", country: "US"}
 - {name: "MarketWatch", url: "https://www.marketwatch.com", type: "news", country: "US"}
-- {name: "Nikkei Asia – Business", url: "https://asia.nikkei.com/Business", type: "news", country: "JP"}
-- {name: "Caixin Global", url: "https://www.caixinglobal.com", type: "news", country: "CN"}
-- {name: "South China Morning Post – Business", url: "https://www.scmp.com/business", type: "news", country: "HK"}
-- {name: "TASS – Economy", url: "https://tass.com/economy", type: "news", country: "RU"}
-- {name: "Interfax – Business", url: "https://www.interfax.ru/business", type: "news", country: "RU"}
-- {name: "RBC – Финансы", url: "https://www.rbc.ru/finances", type: "news", country: "RU"}
 - {name: "Yahoo Finance", url: "https://finance.yahoo.com", type: "aggregator", country: "US"}
+- {name: "Barron's Markets", url: "https://www.barrons.com/markets", type: "news", country: "US"}
+- {name: "Forbes Markets", url: "https://www.forbes.com/markets", type: "news", country: "US"}
+- {name: "Fortune Finance", url: "https://fortune.com/finance", type: "news", country: "US"}
+- {name: "Business Insider Finance", url: "https://www.businessinsider.com/finance", type: "news", country: "US"}
+- {name: "The Economist - Finance & Economics", url: "https://www.economist.com/finance-and-economics", type: "news", country: "UK"}
+- {name: "TheStreet", url: "https://www.thestreet.com", type: "news", country: "US"}
+- {name: "Seeking Alpha Market News", url: "https://seekingalpha.com/market-news", type: "aggregator", country: "US"}
+- {name: "The Motley Fool Investing", url: "https://www.fool.com/investing", type: "news", country: "US"}
+- {name: "Kiplinger Personal Finance", url: "https://www.kiplinger.com/personal-finance", type: "news", country: "US"}
+- {name: "Investopedia Markets", url: "https://www.investopedia.com/markets", type: "news", country: "US"}
+- {name: "Morningstar News & Research", url: "https://www.morningstar.com/news", type: "news", country: "US"}
+- {name: "S&P Global Market Intelligence", url: "https://www.spglobal.com/marketintelligence/en/news-insights", type: "news", country: "US"}
+- {name: "Moody's Credit Outlook", url: "https://www.moodys.com/researchandratings", type: "news", country: "US"}
+- {name: "Fitch Ratings Insights", url: "https://www.fitchratings.com/research", type: "news", country: "INTL"}
+- {name: "Dow Jones Newswires", url: "https://www.dowjones.com/professional/newswires", type: "newswire", country: "US"}
+- {name: "Associated Press Business", url: "https://apnews.com/hub/business", type: "newswire", country: "US"}
+- {name: "USA Today Money", url: "https://www.usatoday.com/money", type: "news", country: "US"}
+- {name: "NPR Economy", url: "https://www.npr.org/sections/money", type: "news", country: "US"}
+- {name: "The Globe and Mail - Report on Business", url: "https://www.theglobeandmail.com/business", type: "news", country: "CA"}
+- {name: "Financial Post", url: "https://financialpost.com", type: "news", country: "CA"}
+- {name: "BNN Bloomberg", url: "https://www.bnnbloomberg.ca", type: "news", country: "CA"}
+- {name: "El Financiero", url: "https://www.elfinanciero.com.mx", type: "news", country: "MX"}
+- {name: "El Economista Mexico", url: "https://www.eleconomista.com.mx", type: "news", country: "MX"}
+- {name: "Expansion Mexico", url: "https://expansion.mx", type: "news", country: "MX"}
+- {name: "Valor Economico", url: "https://valor.globo.com", type: "news", country: "BR"}
+- {name: "O Globo Economia", url: "https://oglobo.globo.com/economia", type: "news", country: "BR"}
+- {name: "Folha de Sao Paulo Mercado", url: "https://www1.folha.uol.com.br/mercado", type: "news", country: "BR"}
+- {name: "Estadao Economia", url: "https://economia.estadao.com.br", type: "news", country: "BR"}
+- {name: "InfoMoney", url: "https://www.infomoney.com.br", type: "aggregator", country: "BR"}
+- {name: "America Economia", url: "https://www.americaeconomia.com", type: "news", country: "LATAM"}
+- {name: "Diario Financiero", url: "https://www.df.cl", type: "news", country: "CL"}
+- {name: "Gestion Peru", url: "https://gestion.pe", type: "news", country: "PE"}
+- {name: "Portafolio", url: "https://www.portafolio.co", type: "news", country: "CO"}
+- {name: "El Cronista", url: "https://www.cronista.com", type: "news", country: "AR"}
+- {name: "The Guardian Business", url: "https://www.theguardian.com/business", type: "news", country: "UK"}
+- {name: "City A.M.", url: "https://www.cityam.com", type: "news", country: "UK"}
+- {name: "BBC Business", url: "https://www.bbc.com/news/business", type: "news", country: "UK"}
+- {name: "Irish Times Business", url: "https://www.irishtimes.com/business", type: "news", country: "IE"}
+- {name: "Handelsblatt", url: "https://www.handelsblatt.com", type: "news", country: "DE"}
+- {name: "FAZ Finanzen", url: "https://www.faz.net/aktuell/finanzen", type: "news", country: "DE"}
+- {name: "WirtschaftsWoche", url: "https://www.wiwo.de", type: "news", country: "DE"}
+- {name: "Les Echos", url: "https://www.lesechos.fr", type: "news", country: "FR"}
+- {name: "La Tribune", url: "https://www.latribune.fr", type: "news", country: "FR"}
+- {name: "Il Sole 24 Ore", url: "https://www.ilsole24ore.com", type: "news", country: "IT"}
+- {name: "Milano Finanza", url: "https://www.milanofinanza.it", type: "news", country: "IT"}
+- {name: "Expansion Spain", url: "https://www.expansion.com", type: "news", country: "ES"}
+- {name: "Cinco Dias", url: "https://cincodias.elpais.com", type: "news", country: "ES"}
+- {name: "El Economista Spain", url: "https://www.eleconomista.es", type: "news", country: "ES"}
+- {name: "De Tijd", url: "https://www.tijd.be", type: "news", country: "BE"}
+- {name: "Het Financieele Dagblad", url: "https://fd.nl", type: "news", country: "NL"}
+- {name: "Dagens Industri", url: "https://www.di.se", type: "news", country: "SE"}
+- {name: "Dagens Naeringsliv", url: "https://www.dn.no", type: "news", country: "NO"}
+- {name: "Borsen", url: "https://borsen.dk", type: "news", country: "DK"}
+- {name: "Kauppalehti", url: "https://www.kauppalehti.fi", type: "news", country: "FI"}
+- {name: "Hospodarske Noviny", url: "https://www.hn.cz", type: "news", country: "CZ"}
+- {name: "E15", url: "https://www.e15.cz", type: "news", country: "CZ"}
+- {name: "Rzeczpospolita Biznes", url: "https://www.rp.pl/biznes", type: "news", country: "PL"}
+- {name: "Puls Biznesu", url: "https://www.pb.pl", type: "news", country: "PL"}
+- {name: "Ziarul Financiar", url: "https://www.zf.ro", type: "news", country: "RO"}
+- {name: "Nikkei Asia Business", url: "https://asia.nikkei.com/Business", type: "news", country: "JP"}
+- {name: "The Japan Times Business", url: "https://www.japantimes.co.jp/news/business", type: "news", country: "JP"}
+- {name: "NHK World Business", url: "https://www3.nhk.or.jp/nhkworld/en/news/business", type: "news", country: "JP"}
+- {name: "Yonhap Economy", url: "https://en.yna.co.kr/economy", type: "newswire", country: "KR"}
+- {name: "Korea Herald Business", url: "https://www.koreaherald.com/list.php?ct=0201", type: "news", country: "KR"}
+- {name: "The Business Times", url: "https://www.businesstimes.com.sg", type: "news", country: "SG"}
+- {name: "The Straits Times Business", url: "https://www.straitstimes.com/business", type: "news", country: "SG"}
+- {name: "Channel NewsAsia Business", url: "https://www.channelnewsasia.com/business", type: "news", country: "SG"}
+- {name: "South China Morning Post Business", url: "https://www.scmp.com/business", type: "news", country: "HK"}
+- {name: "Caixin Global", url: "https://www.caixinglobal.com", type: "news", country: "CN"}
+- {name: "China Daily Business", url: "https://www.chinadaily.com.cn/business", type: "news", country: "CN"}
+- {name: "Xinhua Finance", url: "https://www.xinhuanet.com/english/business", type: "newswire", country: "CN"}
+- {name: "Taipei Times Business", url: "https://www.taipeitimes.com/News/biz", type: "news", country: "TW"}
+- {name: "Focus Taiwan Business", url: "https://focustaiwan.tw/business", type: "news", country: "TW"}
+- {name: "Economic Times Markets", url: "https://economictimes.indiatimes.com/markets", type: "news", country: "IN"}
+- {name: "Business Standard", url: "https://www.business-standard.com", type: "news", country: "IN"}
+- {name: "Mint", url: "https://www.livemint.com", type: "news", country: "IN"}
+- {name: "Hindu BusinessLine", url: "https://www.thehindubusinessline.com", type: "news", country: "IN"}
+- {name: "The Edge Markets", url: "https://www.theedgemarkets.com", type: "news", country: "MY"}
+- {name: "Bangkok Post Business", url: "https://www.bangkokpost.com/business", type: "news", country: "TH"}
+- {name: "The Jakarta Post Business", url: "https://www.thejakartapost.com/business", type: "news", country: "ID"}
+- {name: "BusinessWorld Philippines", url: "https://www.bworldonline.com", type: "news", country: "PH"}
+- {name: "The Australian Financial Review", url: "https://www.afr.com", type: "news", country: "AU"}
+- {name: "The New Zealand Herald Business", url: "https://www.nzherald.co.nz/business", type: "news", country: "NZ"}
+- {name: "Zawya", url: "https://www.zawya.com", type: "news", country: "AE"}
+- {name: "The National Business", url: "https://www.thenationalnews.com/business", type: "news", country: "AE"}
+- {name: "Arabian Business", url: "https://www.arabianbusiness.com", type: "news", country: "AE"}
+- {name: "Al Arabiya Business", url: "https://english.alarabiya.net/business", type: "news", country: "SA"}
+- {name: "Globes", url: "https://en.globes.co.il", type: "news", country: "IL"}
+- {name: "Calcalist", url: "https://www.calcalist.co.il", type: "news", country: "IL"}
+- {name: "Business Day South Africa", url: "https://www.businesslive.co.za", type: "news", country: "ZA"}
+- {name: "Fin24", url: "https://www.fin24.com", type: "aggregator", country: "ZA"}
+- {name: "Business Day Nigeria", url: "https://businessday.ng", type: "news", country: "NG"}
+- {name: "Daily Nation Business", url: "https://nation.africa/kenya/business", type: "news", country: "KE"}
