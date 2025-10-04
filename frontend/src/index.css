@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+/* Токены темы для v4 */
+@theme {
+  --shadow-soft: 0 8px 30px rgba(0,0,0,.06);
+  /* по желанию — радиус, если используешь в классе .card */
+  --radius-xl2: 1rem;
+}
+
+@layer base {
+  html { @apply bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100; }
+  body { font-family: ui-sans-serif, system-ui, -apple-system, "SF Pro Text", "Inter",
+         "Segoe UI", Roboto, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
+}
+
+@layer components {
+  /* теперь shadow-soft валиден */
+  .glass {
+    @apply backdrop-blur-md shadow-soft border border-white/60 dark:border-white/10;
+    background: radial-gradient(1200px 400px at 50% -10%, rgba(255,255,255,.35), transparent),
+                radial-gradient(1200px 400px at 50% 110%, rgba(255,255,255,.2), transparent);
+  }
+  .card      { @apply rounded-2xl p-5 transition hover:-translate-y-0.5; }
+  .card-dark { }
+  .btn       { @apply inline-flex items-center gap-2 px-4 h-10 rounded-xl border border-zinc-200 dark:border-zinc-800
+                      bg-white/60 dark:bg-zinc-900/60 hover:bg-white/80 dark:hover:bg-zinc-800/70 transition; }
+  .pill      { @apply inline-flex items-center px-2.5 h-7 rounded-full text-xs font-medium border border-zinc-200 dark:border-zinc-800; }
+  .input     { @apply h-10 px-3 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white/60 dark:bg-zinc-900/60
+                      focus:outline-none focus:ring-2 focus:ring-zinc-300 dark:focus:ring-zinc-700; }
+}

@@ -1,0 +1,115 @@
+# Регуляторы, ЦБ и международные институты
+- {name: "U.S. Securities and Exchange Commission (SEC)", url: "https://www.sec.gov", type: "regulator", country: "US"}
+- {name: "Federal Reserve Board", url: "https://www.federalreserve.gov", type: "central_bank", country: "US"}
+- {name: "U.S. Department of the Treasury", url: "https://home.treasury.gov", type: "regulator", country: "US"}
+- {name: "Commodity Futures Trading Commission (CFTC)", url: "https://www.cftc.gov", type: "regulator", country: "US"}
+- {name: "Federal Deposit Insurance Corporation (FDIC)", url: "https://www.fdic.gov", type: "regulator", country: "US"}
+- {name: "Office of the Comptroller of the Currency (OCC)", url: "https://www.occ.treas.gov", type: "regulator", country: "US"}
+- {name: "FINRA", url: "https://www.finra.org", type: "regulator", country: "US"}
+- {name: "Consumer Financial Protection Bureau (CFPB)", url: "https://www.consumerfinance.gov", type: "regulator", country: "US"}
+
+- {name: "European Central Bank (ECB)", url: "https://www.ecb.europa.eu", type: "central_bank", country: "EU"}
+- {name: "ESMA", url: "https://www.esma.europa.eu", type: "regulator", country: "EU"}
+- {name: "EBA", url: "https://www.eba.europa.eu", type: "regulator", country: "EU"}
+- {name: "EIOPA", url: "https://www.eiopa.europa.eu", type: "regulator", country: "EU"}
+- {name: "European Commission – Press", url: "https://ec.europa.eu/commission/presscorner/home/en", type: "intl_org", country: "EU"}
+
+- {name: "Bank of England", url: "https://www.bankofengland.co.uk", type: "central_bank", country: "UK"}
+- {name: "Prudential Regulation Authority (PRA)", url: "https://www.bankofengland.co.uk/prudential-regulation", type: "regulator", country: "UK"}
+- {name: "Financial Conduct Authority (FCA)", url: "https://www.fca.org.uk", type: "regulator", country: "UK"}
+
+- {name: "BaFin", url: "https://www.bafin.de", type: "regulator", country: "DE"}
+- {name: "AMF France", url: "https://www.amf-france.org", type: "regulator", country: "FR"}
+- {name: "CONSOB", url: "https://www.consob.it", type: "regulator", country: "IT"}
+- {name: "CNMV Spain", url: "https://www.cnmv.es", type: "regulator", country: "ES"}
+- {name: "AFM Netherlands", url: "https://www.afm.nl", type: "regulator", country: "NL"}
+- {name: "FINMA", url: "https://www.finma.ch", type: "regulator", country: "CH"}
+- {name: "Finansinspektionen (Sweden)", url: "https://www.fi.se", type: "regulator", country: "SE"}
+- {name: "Finanstilsynet (Denmark)", url: "https://www.finanstilsynet.dk", type: "regulator", country: "DK"}
+- {name: "Finanstilsynet (Norway)", url: "https://www.finanstilsynet.no", type: "regulator", country: "NO"}
+- {name: "FSMA Belgium", url: "https://www.fsma.be", type: "regulator", country: "BE"}
+- {name: "CMVM Portugal", url: "https://www.cmvm.pt", type: "regulator", country: "PT"}
+- {name: "Central Bank of Ireland", url: "https://www.centralbank.ie", type: "regulator", country: "IE"}
+- {name: "CSSF Luxembourg", url: "https://www.cssf.lu", type: "regulator", country: "LU"}
+
+- {name: "People’s Bank of China (PBOC)", url: "http://www.pbc.gov.cn", type: "central_bank", country: "CN"}
+- {name: "China Securities Regulatory Commission (CSRC)", url: "http://www.csrc.gov.cn", type: "regulator", country: "CN"}
+- {name: "National Administration of Financial Regulation (NAFR)", url: "https://www.nafr.gov.cn", type: "regulator", country: "CN"}
+- {name: "State Administration of Foreign Exchange (SAFE)", url: "http://www.safe.gov.cn", type: "regulator", country: "CN"}
+
+- {name: "Bank of Russia (CBR)", url: "https://www.cbr.ru", type: "central_bank", country: "RU"}
+- {name: "Rosfinmonitoring", url: "https://fedsfm.ru", type: "regulator", country: "RU"}
+
+- {name: "Bank for International Settlements (BIS)", url: "https://www.bis.org", type: "intl_org", country: "INTL"}
+- {name: "International Monetary Fund (IMF)", url: "https://www.imf.org", type: "intl_org", country: "INTL"}
+- {name: "World Bank", url: "https://www.worldbank.org", type: "intl_org", country: "INTL"}
+- {name: "OECD – Economy", url: "https://www.oecd.org/economy/", type: "intl_org", country: "INTL"}
+
+# Биржи
+- {name: "New York Stock Exchange (NYSE)", url: "https://www.nyse.com", type: "exchange", country: "US"}
+- {name: "Nasdaq", url: "https://www.nasdaq.com", type: "exchange", country: "US"}
+- {name: "Cboe Global Markets", url: "https://www.cboe.com", type: "exchange", country: "US"}
+- {name: "CME Group", url: "https://www.cmegroup.com", type: "exchange", country: "US"}
+- {name: "Intercontinental Exchange (ICE)", url: "https://www.theice.com", type: "exchange", country: "US"}
+
+- {name: "London Stock Exchange (LSE)", url: "https://www.londonstockexchange.com", type: "exchange", country: "UK"}
+- {name: "Euronext", url: "https://www.euronext.com", type: "exchange", country: "EU"}
+- {name: "Frankfurt Stock Exchange (Boerse Frankfurt)", url: "https://www.boerse-frankfurt.de", type: "exchange", country: "DE"}
+- {name: "SIX Swiss Exchange", url: "https://www.six-group.com", type: "exchange", country: "CH"}
+- {name: "BME Spanish Exchanges (Bolsa de Madrid)", url: "https://www.bolsamadrid.es", type: "exchange", country: "ES"}
+- {name: "Vienna Stock Exchange", url: "https://www.wienerborse.at", type: "exchange", country: "AT"}
+- {name: "Warsaw Stock Exchange (GPW)", url: "https://www.gpw.pl", type: "exchange", country: "PL"}
+- {name: "Prague Stock Exchange (PSE)", url: "https://www.pse.cz", type: "exchange", country: "CZ"}
+- {name: "Budapest Stock Exchange (BSE)", url: "https://www.bse.hu", type: "exchange", country: "HU"}
+- {name: "Athens Stock Exchange (ATHEX)", url: "https://www.athexgroup.gr", type: "exchange", country: "GR"}
+- {name: "Bucharest Stock Exchange (BVB)", url: "https://www.bvb.ro", type: "exchange", country: "RO"}
+- {name: "Nasdaq Nordic", url: "https://www.nasdaqomxnordic.com", type: "exchange", country: "EU"}
+- {name: "Oslo Børs", url: "https://www.oslobors.no", type: "exchange", country: "NO"}
+- {name: "Luxembourg Stock Exchange", url: "https://www.bourse.lu", type: "exchange", country: "LU"}
+- {name: "Borsa Italiana (Euronext Milan)", url: "https://www.borsaitaliana.it", type: "exchange", country: "IT"}
+
+- {name: "Hong Kong Exchanges (HKEX)", url: "https://www.hkex.com.hk", type: "exchange", country: "HK"}
+- {name: "Shanghai Stock Exchange (SSE)", url: "http://www.sse.com.cn", type: "exchange", country: "CN"}
+- {name: "Shenzhen Stock Exchange (SZSE)", url: "http://www.szse.cn", type: "exchange", country: "CN"}
+- {name: "Japan Exchange Group (JPX)", url: "https://www.jpx.co.jp", type: "exchange", country: "JP"}
+- {name: "Korea Exchange (KRX)", url: "https://global.krx.co.kr", type: "exchange", country: "KR"}
+- {name: "Taiwan Stock Exchange (TWSE)", url: "https://www.twse.com.tw", type: "exchange", country: "TW"}
+- {name: "Singapore Exchange (SGX)", url: "https://www.sgx.com", type: "exchange", country: "SG"}
+- {name: "Australian Securities Exchange (ASX)", url: "https://www2.asx.com.au", type: "exchange", country: "AU"}
+- {name: "NSE India", url: "https://www.nseindia.com", type: "exchange", country: "IN"}
+- {name: "BSE India", url: "https://www.bseindia.com", type: "exchange", country: "IN"}
+- {name: "Bursa Malaysia", url: "https://www.bursamalaysia.com", type: "exchange", country: "MY"}
+- {name: "Indonesia Stock Exchange (IDX)", url: "https://www.idx.co.id", type: "exchange", country: "ID"}
+- {name: "Stock Exchange of Thailand (SET)", url: "https://www.set.or.th", type: "exchange", country: "TH"}
+- {name: "Philippine Stock Exchange (PSE)", url: "https://www.pse.com.ph", type: "exchange", country: "PH"}
+- {name: "Ho Chi Minh Stock Exchange (HOSE)", url: "https://www.hsx.vn", type: "exchange", country: "VN"}
+- {name: "New Zealand Exchange (NZX)", url: "https://www.nzx.com", type: "exchange", country: "NZ"}
+
+- {name: "Moscow Exchange (MOEX)", url: "https://www.moex.com", type: "exchange", country: "RU"}
+- {name: "SPB Exchange", url: "https://spbexchange.ru", type: "exchange", country: "RU"}
+
+- {name: "Saudi Exchange (Tadawul)", url: "https://www.saudiexchange.sa", type: "exchange", country: "SA"}
+- {name: "Abu Dhabi Securities Exchange (ADX)", url: "https://www.adx.ae", type: "exchange", country: "AE"}
+- {name: "Dubai Financial Market (DFM)", url: "https://www.dfm.ae", type: "exchange", country: "AE"}
+- {name: "Qatar Stock Exchange (QSE)", url: "https://www.qe.com.qa", type: "exchange", country: "QA"}
+- {name: "Tel Aviv Stock Exchange (TASE)", url: "https://www.tase.co.il", type: "exchange", country: "IL"}
+- {name: "Johannesburg Stock Exchange (JSE)", url: "https://www.jse.co.za", type: "exchange", country: "ZA"}
+- {name: "Egyptian Exchange (EGX)", url: "https://www.egx.com.eg", type: "exchange", country: "EG"}
+
+- {name: "Toronto Stock Exchange (TSX)", url: "https://www.tsx.com", type: "exchange", country: "CA"}
+- {name: "Bolsa Mexicana de Valores (BMV)", url: "https://www.bmv.com.mx", type: "exchange", country: "MX"}
+
+# Медиа/агентства/агрегаторы (финансы)
+- {name: "Reuters – Business & Finance", url: "https://www.reuters.com/business", type: "news", country: "INTL"}
+- {name: "Bloomberg Markets", url: "https://www.bloomberg.com/markets", type: "news", country: "INTL"}
+- {name: "Financial Times – Markets", url: "https://www.ft.com/markets", type: "news", country: "UK"}
+- {name: "Wall Street Journal – Finance", url: "https://www.wsj.com/finance", type: "news", country: "US"}
+- {name: "CNBC – Finance", url: "https://www.cnbc.com/finance", type: "news", country: "US"}
+- {name: "MarketWatch", url: "https://www.marketwatch.com", type: "news", country: "US"}
+- {name: "Nikkei Asia – Business", url: "https://asia.nikkei.com/Business", type: "news", country: "JP"}
+- {name: "Caixin Global", url: "https://www.caixinglobal.com", type: "news", country: "CN"}
+- {name: "South China Morning Post – Business", url: "https://www.scmp.com/business", type: "news", country: "HK"}
+- {name: "TASS – Economy", url: "https://tass.com/economy", type: "news", country: "RU"}
+- {name: "Interfax – Business", url: "https://www.interfax.ru/business", type: "news", country: "RU"}
+- {name: "RBC – Финансы", url: "https://www.rbc.ru/finances", type: "news", country: "RU"}
+- {name: "Yahoo Finance", url: "https://finance.yahoo.com", type: "aggregator", country: "US"}
